@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Hindcast Scheduler</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" href="file:///home/tdurrant/.local/lib/python3.7/site-packages/darkslide/themes/default/css/base.css">
+    <link rel="stylesheet" media="print" href="file:///home/tdurrant/.local/lib/python3.7/site-packages/darkslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///home/tdurrant/.local/lib/python3.7/site-packages/darkslide/themes/default/css/screen.css">
+    <link rel="stylesheet" media="all" href="file:///home/tdurrant/.local/lib/python3.7/site-packages/darkslide/themes/abyss/css/theme.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///home/tdurrant/.local/lib/python3.7/site-packages/darkslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-1">
+          <div class="inner">
+            
+            <header><h1>Hindcast Scheduler</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source:  -->
+      <div class="slide-wrapper">
+        <div class="slide slide-">
+          <div class="inner">
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="page_number">
+              /7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-2">
+          <div class="inner">
+            
+            <header><h1>Intercycle Dependences</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-3">
+          <div class="inner">
+            
+            <header><h1>Preprocessing/Model/Post</h1></header>
+            
+            
+            <section><h2>Template</h2>
+<pre><span></span><span class="l l-Scalar l-Scalar-Plain">pycallable</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">ww3.ww3.WW3HC</span>
+
+<span class="l l-Scalar l-Scalar-Plain">id</span><span class="p p-Indicator">:</span>             <span class="l l-Scalar l-Scalar-Plain">era5_glob-st4_prod</span>
+<span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span>    <span class="l l-Scalar l-Scalar-Plain">Global WW3 0.5 by 0.5</span>
+<span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span>          <span class="l l-Scalar l-Scalar-Plain">WW3 Global %Y%m%d_%Hz</span>
+<span class="l l-Scalar l-Scalar-Plain">modelexec</span><span class="p p-Indicator">:</span>      <span class="l l-Scalar l-Scalar-Plain">./ww3_shel</span>
+
+<span class="l l-Scalar l-Scalar-Plain">....</span>
+
+
+<span class="l l-Scalar l-Scalar-Plain">schedule</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">docker</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span>      <span class="l l-Scalar l-Scalar-Plain">metocean/ww3:mpich-v5.5.0.2</span>
+    <span class="l l-Scalar l-Scalar-Plain">allocate</span><span class="p p-Indicator">:</span>   <span class="p p-Indicator">[</span><span class="nv">28</span><span class="p p-Indicator">]</span>
+    <span class="l l-Scalar l-Scalar-Plain">mpi</span><span class="p p-Indicator">:</span>        <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">cycles</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">frequency</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">MONTHLY</span>
+        <span class="l l-Scalar l-Scalar-Plain">interval</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-4">
+          <div class="inner">
+            
+            <header><h1>Preprocessing/Model/Post</h1></header>
+            
+            
+            <section><h2>Preprocessing</h2>
+<pre><span></span><span class="l l-Scalar l-Scalar-Plain">pycallable</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">ww3.ww3.WW3HC</span>
+<span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>       <span class="l l-Scalar l-Scalar-Plain">model.ww3_era5_glob-st4_prod</span>
+<span class="l l-Scalar l-Scalar-Plain">tasks</span><span class="p p-Indicator">:</span>          <span class="p p-Indicator">{</span><span class="nv">prep</span><span class="p p-Indicator">:</span> <span class="nv">True</span><span class="p p-Indicator">,</span> <span class="nv">mod</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">,</span> <span class="nv">post</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">,</span> <span class="nv">clean</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">}</span>
+<span class="l l-Scalar l-Scalar-Plain">schedule</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">hard_dependency</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">model.ww3_era5_glob-st4_prod-model:-2</span>
+    <span class="l l-Scalar l-Scalar-Plain">routing_key</span><span class="p p-Indicator">:</span> <span class="s">&quot;#.sexo.#&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">allocate</span><span class="p p-Indicator">:</span>    <span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">]</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-5">
+          <div class="inner">
+            
+            <header><h1>Preprocessing/Model/Post</h1></header>
+            
+            
+            <section><h2>Model</h2>
+<pre><span></span><span class="l l-Scalar l-Scalar-Plain">pycallable</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">ww3.ww3.WW3HC</span>
+<span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>       <span class="l l-Scalar l-Scalar-Plain">model.ww3_era5_glob-st4_prod</span>
+<span class="l l-Scalar l-Scalar-Plain">tasks</span><span class="p p-Indicator">:</span>          <span class="p p-Indicator">{</span><span class="nv">prep</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">,</span> <span class="nv">mod</span><span class="p p-Indicator">:</span> <span class="nv">True</span><span class="p p-Indicator">,</span> <span class="nv">post</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">,</span> <span class="nv">clean</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">}</span>
+<span class="l l-Scalar l-Scalar-Plain">schedule</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">hard_dependency</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">model.ww3_era5_glob-st4_prod-pre</span>
+    <span class="l l-Scalar l-Scalar-Plain">routing_key</span><span class="p p-Indicator">:</span> <span class="s">&quot;#.xeon.#&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">allocate</span><span class="p p-Indicator">:</span>   <span class="p p-Indicator">[</span><span class="nv">27</span><span class="p p-Indicator">]</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-6">
+          <div class="inner">
+            
+            <header><h1>Preprocessing/Model/Post</h1></header>
+            
+            
+            <section><h2>Postprocessing</h2>
+<pre><span></span><span class="l l-Scalar l-Scalar-Plain">pycallable</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">ww3.ww3.WW3HC</span>
+<span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>       <span class="l l-Scalar l-Scalar-Plain">model.ww3_era5_glob-st4_prod</span>
+<span class="l l-Scalar l-Scalar-Plain">tasks</span><span class="p p-Indicator">:</span>          <span class="p p-Indicator">{</span><span class="nv">prep</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">,</span> <span class="nv">mod</span><span class="p p-Indicator">:</span> <span class="nv">False</span><span class="p p-Indicator">,</span> <span class="nv">post</span><span class="p p-Indicator">:</span> <span class="nv">True</span><span class="p p-Indicator">,</span> <span class="nv">clean</span><span class="p p-Indicator">:</span> <span class="nv">True</span><span class="p p-Indicator">}</span>
+<span class="l l-Scalar l-Scalar-Plain">schedule</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">hard_dependency</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">model.ww3_era5_glob-st4_prod-model</span>
+    <span class="l l-Scalar l-Scalar-Plain">routing_key</span><span class="p p-Indicator">:</span> <span class="s">&quot;#.xeon.#&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">allocate</span><span class="p p-Indicator">:</span>    <span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">]</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-7">
+          <div class="inner">
+            
+            <header><h1>Current State</h1></header>
+            
+            
+            <section><pre class="code literal-block">
+[metocean&#64;aotea3:~]
+% sched nodes
+()
+| Node        | Total | Free cores | Allocated | Busy direct |
+|-------------|-------|------------|-----------|-------------|
+| xeon01      |    24 |         24 |         0 |             |
+| xeon02      |    28 |          0 |        28 |             |
+| xeon03      |    28 |          1 |        27 |             |
+| xeon04      |    28 |         28 |         0 |             |
+| xeon05      |    28 |          1 |        27 |             |
+| xeon06      |    28 |          1 |        27 |             |
+| sexo02      |     6 |          6 |         0 |             |
+| sexo01      |     6 |          6 |         0 |           0 |
+()
+Available cores in this cluster:   67 / 176
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/7
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide:1">Hindcast Scheduler</a></th>
+        <td><a href="#slide:1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide:2">Intercycle Dependences</a></th>
+        <td><a href="#slide:2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide:3">Preprocessing/Model/Post</a></th>
+        <td><a href="#slide:3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide:4">Preprocessing/Model/Post</a></th>
+        <td><a href="#slide:4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide:5">Preprocessing/Model/Post</a></th>
+        <td><a href="#slide:5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide:6">Preprocessing/Model/Post</a></th>
+        <td><a href="#slide:6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide:7">Current State</a></th>
+        <td><a href="#slide:7">7</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide next slide</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+    <br>
+    <strong>Generated with Darkslide 4.0.1</strong>
+  </div>
+  <script>main()</script>
+</body>
+</html>
