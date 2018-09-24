@@ -1303,7 +1303,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             </aside>
             
             <aside class="page_number">
-              1/7
+              1/9
             </aside>
           </footer>
         </div>
@@ -1326,7 +1326,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             
             
             <aside class="page_number">
-              /7
+              /9
             </aside>
           </footer>
         </div>
@@ -1339,6 +1339,11 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             
             <header><h1>Intercycle Dependences</h1></header>
             
+            
+            <section><ul class="simple">
+<li>Multiple workflows</li>
+<li>Cycle can now depend on tasks from past cycles</li>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -1355,7 +1360,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             </aside>
             
             <aside class="page_number">
-              2/7
+              2/9
             </aside>
           </footer>
         </div>
@@ -1364,6 +1369,49 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
         <div class="slide slide-3">
+          <div class="inner">
+            
+            <header><h1>Preprocessing/Model/Post</h1></header>
+            
+            
+            <section><ul class="simple">
+<li>SWAN nested configurations</li>
+<li><dl class="first docutils">
+<dt>WW3</dt>
+<dd><ul class="first last">
+<li>preprocessing 15 mins</li>
+<li>model 1 hour</li>
+<li>postprocessing 45 mins</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-4">
           <div class="inner">
             
             <header><h1>Preprocessing/Model/Post</h1></header>
@@ -1405,7 +1453,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             </aside>
             
             <aside class="page_number">
-              3/7
+              4/9
             </aside>
           </footer>
         </div>
@@ -1413,7 +1461,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide-4">
+        <div class="slide slide-5">
           <div class="inner">
             
             <header><h1>Preprocessing/Model/Post</h1></header>
@@ -1445,7 +1493,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             </aside>
             
             <aside class="page_number">
-              4/7
+              5/9
             </aside>
           </footer>
         </div>
@@ -1453,7 +1501,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide-5">
+        <div class="slide slide-6">
           <div class="inner">
             
             <header><h1>Preprocessing/Model/Post</h1></header>
@@ -1485,7 +1533,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             </aside>
             
             <aside class="page_number">
-              5/7
+              6/9
             </aside>
           </footer>
         </div>
@@ -1493,7 +1541,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide-6">
+        <div class="slide slide-7">
           <div class="inner">
             
             <header><h1>Preprocessing/Model/Post</h1></header>
@@ -1525,7 +1573,7 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
             </aside>
             
             <aside class="page_number">
-              6/7
+              7/9
             </aside>
           </footer>
         </div>
@@ -1533,7 +1581,53 @@ pre .vi{color:#68838b!important;font-weight:700!important;}
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide-7">
+        <div class="slide slide-8">
+          <div class="inner">
+            
+            <header><h1>Preprocessing/Model/Post</h1></header>
+            
+            
+            <section><h2>Workflow</h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>ww3_cfsr_glob-st4.yml</dt>
+<dd><ul class="first last">
+<li>model.ww3_cfsr_glob-st4-pre</li>
+<li>model.ww3_cfsr_glob-st4-model</li>
+<li>model.ww3_cfsr_glob-st4-post</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<pre class="code literal-block">
+$ sched cycle 20120101z 20120301z -w ww3_cfsr_glob-st4
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/9
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-9">
           <div class="inner">
             
             <header><h1>Current State</h1></header>
@@ -1572,7 +1666,7 @@ Available cores in this cluster:   67 / 176
             </aside>
             
             <aside class="page_number">
-              7/7
+              9/9
             </aside>
           </footer>
         </div>
@@ -1623,8 +1717,20 @@ Available cores in this cluster:   67 / 176
       
       
       <tr id="toc-row-7">
-        <th><a href="#slide:7">Current State</a></th>
+        <th><a href="#slide:7">Preprocessing/Model/Post</a></th>
         <td><a href="#slide:7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide:8">Preprocessing/Model/Post</a></th>
+        <td><a href="#slide:8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide:9">Current State</a></th>
+        <td><a href="#slide:9">9</a></td>
       </tr>
       
       

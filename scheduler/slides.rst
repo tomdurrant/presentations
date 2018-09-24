@@ -10,6 +10,21 @@ Hindcast Scheduler
 Intercycle Dependences
 =======================
 
+- Multiple workflows
+- Cycle can now depend on tasks from past cycles
+
+----
+
+Preprocessing/Model/Post
+=========================
+
+- SWAN nested configurations
+- WW3 
+      - preprocessing 15 mins
+      - model 1 hour
+      - postprocessing 45 mins
+
+
 ----
 
 Preprocessing/Model/Post
@@ -97,8 +112,30 @@ Postprocessing
             - model.ww3_era5_glob-st4_prod-model
         routing_key: "#.xeon.#"
         allocate:    [1]
+----
+
+Preprocessing/Model/Post
+=========================
+
+Workflow
+-----------
+
+
+- ww3_cfsr_glob-st4.yml
+    -  model.ww3_cfsr_glob-st4-pre
+    -  model.ww3_cfsr_glob-st4-model
+    -  model.ww3_cfsr_glob-st4-post
+
+
+.. code::
+    
+    $ sched cycle 20120101z 20120301z -w ww3_cfsr_glob-st4
+
 
 ----
+
+
+
 
 Current State
 ==============
